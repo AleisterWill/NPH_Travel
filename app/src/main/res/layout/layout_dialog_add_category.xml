@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="10dp"
+    android:paddingRight="20dp"
+    android:paddingLeft="20dp"
+    android:orientation="vertical">
+
+
+    <EditText
+        android:id="@+id/edit_name_category"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/custom_edittext"
+        android:drawablePadding="8dp"
+        android:hint="name category"
+        android:padding="8dp"
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"/>
+
+
+
+</LinearLayout>

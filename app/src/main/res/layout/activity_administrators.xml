@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Administrators"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:text="ADMINISTRATOR"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:text="Quản Lý User"/>
+            <Button
+                android:id="@+id/btn_addUser"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple"
+                android:text="Thêm User"/>
+
+        </RelativeLayout>
+        <TableLayout android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:stretchColumns="1">
+            <TableRow>
+
+                <TextView
+                    android:layout_width="74dp"
+                    android:background="#c98282"
+                    android:gravity="center"
+                    android:text="Avatar" />
+
+                <TextView
+                    android:layout_width="74dp"
+                    android:background="#c98282"
+                    android:gravity="center"
+                    android:text="id User" />
+                <TextView
+                    android:layout_width="74dp"
+                    android:text="User name"
+
+                    android:background="#c98282"
+                    android:gravity="center"/>
+                <TextView
+                    android:layout_width="74dp"
+                    android:text="Mật khẩu"
+                    android:background="#c98282"
+                    android:gravity="center"/>
+                <TextView
+                    android:layout_width="74dp"
+                    android:text="User role"
+                    android:background="#c98282"
+                    android:gravity="center"/>
+            </TableRow>
+
+        </TableLayout>
+        <ListView
+            android:id="@+id/lvUser"
+            android:layout_width="match_parent"
+            android:layout_height="243dp" />
+
+<!--        category-->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:text="Quản Lý Category"/>
+            <Button
+                android:id="@+id/btn_addCategory"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple"
+                android:text="Thêm Category"/>
+
+        </RelativeLayout>
+        <TableLayout android:layout_height="match_parent"
+            android:layout_width="match_parent">
+            <TableRow>
+
+                <TextView
+                    android:layout_width="30dp"
+                    android:background="#c98282"
+                    android:gravity="center"
+                    android:text="id" />
+
+                <TextView
+                    android:layout_width="74dp"
+                    android:background="#c98282"
+                    android:gravity="center"
+                    android:text="Name" />
+
+            </TableRow>
+
+        </TableLayout>
+
+        <ListView
+            android:id="@+id/lvCategory"
+            android:layout_width="match_parent"
+            android:layout_height="303dp" />
+
+
+    <!--  Tour-->
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:text="Quản Lý Tour"/>
+            <Button
+                android:id="@+id/btn_addTour"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple"
+                android:text="Thêm Tour"/>
+
+        </RelativeLayout>
+
+        <TableLayout android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:stretchColumns="1">
+            <TableRow>
+                <TextView
+                    android:layout_width="74dp"
+                    android:background="#c98282"
+                    android:gravity="center"
+                    android:text="Avatar" />
+
+                <TextView
+                    android:layout_width="74dp"
+                    android:background="#c98282"
+                    android:gravity="center"
+                    android:text="id Tour" />
+
+                <TextView
+                    android:layout_width="74dp"
+                    android:background="#c98282"
+                    android:gravity="center"
+                    android:text="Name" />
+                <TextView
+                    android:layout_width="74dp"
+                    android:background="#c98282"
+                    android:gravity="center"
+                    android:text="Price" />
+                <TextView
+                    android:layout_width="74dp"
+                    android:background="#c98282"
+                    android:gravity="center"
+                    android:text="Location" />
+
+
+            </TableRow>
+
+        </TableLayout>
+
+        <ListView
+            android:id="@+id/lvTour"
+            android:layout_width="match_parent"
+            android:layout_height="303dp" />
+
+<!--        quan ly don-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:text="Quản Lý Booking"/>
+            <Button
+                android:id="@+id/btn_addbooking"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/purple"
+                android:text="Thêm Tour"/>
+
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/lvBooking"
+            android:layout_width="match_parent"
+            android:layout_height="303dp" />
+    </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>
