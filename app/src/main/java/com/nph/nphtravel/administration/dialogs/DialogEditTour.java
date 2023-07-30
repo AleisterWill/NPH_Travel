@@ -1,4 +1,4 @@
-package com.nph.nphtravel;
+package com.nph.nphtravel.administration.dialogs;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -23,6 +23,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 import com.bumptech.glide.Glide;
+import com.nph.nphtravel.R;
+import com.nph.nphtravel.db.handlers.CategoryDatabaseHandler;
+import com.nph.nphtravel.db.handlers.TourDatabaseHandler;
+import com.nph.nphtravel.db.tableclasses.Category;
+import com.nph.nphtravel.db.tableclasses.Tour;
 
 import java.util.ArrayList;
 

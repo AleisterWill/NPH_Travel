@@ -1,4 +1,4 @@
-package com.nph.nphtravel;
+package com.nph.nphtravel.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -31,10 +31,16 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String TEN_BANG_CATEGORY = "Category";
     public static final String COT_NAME_CATEGORY = "_name_category";
 
-    private static final String CREATE_TABLE_CATEGORY = ""
-            + " create table " + TEN_BANG_CATEGORY + " ( "
-            + COT_ID + " integer primary key autoincrement,"
-            + COT_NAME_CATEGORY + " text);";
+//    private static final String CREATE_TABLE_CATEGORY = ""
+//            + " create table " + TEN_BANG_CATEGORY + " ( "
+//            + COT_ID + " integer primary key autoincrement,"
+//            + COT_NAME_CATEGORY + " text);";
+    private static final String CREATE_TABLE_CATEGORY = String.format(
+            "CREATE TABLE %s(%s, %s, %s);",
+        TEN_BANG_CATEGORY,
+        COT_ID + " integer primary key autoincrement",
+        COT_NAME_CATEGORY + "text"
+    );
 
 
     public static final String TEN_BANG_TOUR = "Tour";
@@ -46,23 +52,26 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COT_START_DAY_TOUR = "_start_day_tour";
     public static final String COT_END_DAY_TOUR = "_end_day_tour";
     public static final String COT_DISCOUNT_TOUR = "_discount_tour";
-
     public static final String COT_TOUR_CATEGORY_ID = "_category_id";
 
-    private static final String CREATE_TABLE_TOUR = ""
-            + "create table " + TEN_BANG_TOUR + " ( "
-            + COT_ID + " integer primary key autoincrement ,"
-            + COT_NAME_TOUR + " text not null, "
-            + COT_PRICE_TOUR + " double default '0', "
-            + COT_DESCRIPTION_TOUR + " text, "
-            + COT_LOCATION_TOUR + " text, "
-            + COT_START_DAY_TOUR + " text, "
-            + COT_END_DAY_TOUR + " text, "
-            + COT_AVATAR + " text, "
-            + COT_DISCOUNT_TOUR + " double default '0',"
-            + COT_TOUR_CATEGORY_ID + " text,"
-            + "FOREIGN KEY(" + COT_TOUR_CATEGORY_ID + ") REFERENCES " + TEN_BANG_CATEGORY + "(" + COT_ID + ")"
-            + ")";
+
+    private static final String CREATE_TABLE_TOUR = String.format(
+            "CREATE TABLE %s(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", // 1 table name & 11 columns
+            TEN_BANG_TOUR,
+            String.format("%s %s", COT_ID, "integer primary key autoincrement"),
+            String.format("%s %s", COT_NAME_TOUR, "text"),
+            String.format("%s %s", COT_PRICE_TOUR, "double default '0'"),
+            String.format("%s %s", COT_DESCRIPTION_TOUR, "text"),
+            String.format("%s %s", COT_LOCATION_TOUR, "text"),
+            String.format("%s %s", COT_START_DAY_TOUR, "date"),
+            String.format("%s %s", COT_END_DAY_TOUR, "date"),
+            String.format("%s %s", COT_AVATAR, "text"),
+            String.format("%s %s", COT_DISCOUNT_TOUR, "double default '0'"),
+            String.format("%s %s, FOREIGN KEY(%s) REFERENCES %s(%s)",
+                    COT_TOUR_CATEGORY_ID, "integer", //col_name & data type
+                    COT_TOUR_CATEGORY_ID, TEN_BANG_CATEGORY, COT_ID //col that is FK to tablename(col_name)
+            )
+    );
 
 
 

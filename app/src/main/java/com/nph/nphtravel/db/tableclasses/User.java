@@ -1,4 +1,4 @@
-package com.nph.nphtravel;
+package com.nph.nphtravel.db.tableclasses;
 
 import androidx.annotation.NonNull;
 

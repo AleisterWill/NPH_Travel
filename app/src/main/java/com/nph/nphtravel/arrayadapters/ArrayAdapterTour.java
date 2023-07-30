@@ -1,4 +1,4 @@
-package com.nph.nphtravel;
+package com.nph.nphtravel.arrayadapters;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
+import com.nph.nphtravel.R;
+import com.nph.nphtravel.db.tableclasses.Tour;
 
 import java.util.ArrayList;
 

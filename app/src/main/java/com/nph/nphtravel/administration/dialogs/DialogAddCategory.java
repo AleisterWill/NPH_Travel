@@ -1,4 +1,4 @@
-package com.nph.nphtravel;
+package com.nph.nphtravel.administration.dialogs;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -13,16 +13,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
-public class DialogEditCategory extends AppCompatDialogFragment {
+import com.nph.nphtravel.R;
+import com.nph.nphtravel.db.handlers.CategoryDatabaseHandler;
+import com.nph.nphtravel.db.tableclasses.Category;
 
+public class DialogAddCategory extends AppCompatDialogFragment {
     EditText editCategoryName;
-
-    //dữ liệu từ đối tượng User bên administrator
-    private Category category;
-
-    public DialogEditCategory(Category category) {
-        this.category = category;
-    }
 
     @NonNull
     @Override
@@ -33,56 +29,55 @@ public class DialogEditCategory extends AppCompatDialogFragment {
 
         View view = inflater.inflate(R.layout.layout_dialog_add_category, null);
 
-        editCategoryName = (EditText) view.findViewById(R.id.edit_name_category);
-
-        // lấy dl đổ lên edit Text
-        editCategoryName.setText(category.getCategory_name());
+        editCategoryName = (EditText)view.findViewById(R.id.edit_name_category);
 
         builder.setView(view)
-                .setTitle("Edit category: " + category.getId())
+                .setTitle("Add Category")
                 .setNegativeButton("Hủy", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
                     }
                 })
-                .setPositiveButton("Edit", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Thêm", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
                         CategoryDatabaseHandler db = new CategoryDatabaseHandler(getContext());
-                        String category_name = editCategoryName.getText().toString();
+                        String name_category = editCategoryName.getText().toString();
 
-                        Category c = new Category(category.getId(),category_name);
-                        long newRowId = db.edit_Category(c);
+                        Category add_c = new Category(name_category);
+                        long newRowId = db.addCategory(add_c);
 
-                        editCategoryDialogListener.onCategoryEdit(c);
+                        // load lại dữ liệu sau khi add
+
+                        Category load_c = new Category(String.valueOf(newRowId),name_category);
+                        listener.onCategoryAdded(load_c);
 
                         if (newRowId != -1) {
-                            Toast.makeText(getContext(), "Edit thành công", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Tạo thành công. ID" + newRowId, Toast.LENGTH_LONG).show();
 
                         } else {
-                            Toast.makeText(getContext(), "Edit thất bại" , Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Tạo thất bại" , Toast.LENGTH_LONG).show();
                         }
-
-
 
                     }
                 });
 
-
         return builder.create();
+
     }
 
-    ///
-    public interface EditCategoryDialogListener {
-        void onCategoryEdit(Category category);
+    //loadd
+    public interface AddCategoryDialogListener {
+        void onCategoryAdded(Category category);
     }
-    private EditCategoryDialogListener editCategoryDialogListener;
+
+    private AddCategoryDialogListener listener;
 
 
     // Setter cho listener
-    public void setListener(EditCategoryDialogListener listeneredit) {
-        this.editCategoryDialogListener = listeneredit;
+    public void setListener(AddCategoryDialogListener listener) {
+        this.listener = listener;
     }
 }

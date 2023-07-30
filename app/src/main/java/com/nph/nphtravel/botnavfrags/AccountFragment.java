@@ -1,4 +1,4 @@
-package com.nph.nphtravel;
+package com.nph.nphtravel.botnavfrags;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+
+import com.nph.nphtravel.account.Login_Activity;
+import com.nph.nphtravel.R;
 
 
 public class AccountFragment extends Fragment {

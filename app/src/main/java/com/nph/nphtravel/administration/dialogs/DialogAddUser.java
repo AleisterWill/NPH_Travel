@@ -1,4 +1,4 @@
-package com.nph.nphtravel;
+package com.nph.nphtravel.administration.dialogs;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -17,6 +17,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
+
+import com.nph.nphtravel.R;
+import com.nph.nphtravel.db.handlers.UserDatabaseHandler;
+import com.nph.nphtravel.db.tableclasses.User;
 
 public class DialogAddUser extends AppCompatDialogFragment {
 

@@ -1,9 +1,12 @@
-package com.nph.nphtravel;
+package com.nph.nphtravel.db.handlers;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.nph.nphtravel.db.DBHelper;
+import com.nph.nphtravel.db.tableclasses.User;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.nph.nphtravel;
+package com.nph.nphtravel.administration.dialogs;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -23,6 +23,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatDialogFragment;
+
+import com.nph.nphtravel.R;
+import com.nph.nphtravel.db.handlers.CategoryDatabaseHandler;
+import com.nph.nphtravel.db.handlers.TourDatabaseHandler;
+import com.nph.nphtravel.db.tableclasses.Category;
+import com.nph.nphtravel.db.tableclasses.Tour;
 
 import java.util.ArrayList;
 import java.util.Calendar;

@@ -1,4 +1,4 @@
-package com.nph.nphtravel;
+package com.nph.nphtravel.administration;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -11,6 +11,22 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.nph.nphtravel.administration.dialogs.DialogAddCategory;
+import com.nph.nphtravel.administration.dialogs.DialogAddTour;
+import com.nph.nphtravel.administration.dialogs.DialogAddUser;
+import com.nph.nphtravel.administration.dialogs.DialogEditCategory;
+import com.nph.nphtravel.administration.dialogs.DialogEditTour;
+import com.nph.nphtravel.administration.dialogs.DialogEditUser;
+import com.nph.nphtravel.R;
+import com.nph.nphtravel.arrayadapters.ArrayAdapterTour;
+import com.nph.nphtravel.arrayadapters.ArrayAdapterUser;
+import com.nph.nphtravel.db.handlers.CategoryDatabaseHandler;
+import com.nph.nphtravel.db.handlers.TourDatabaseHandler;
+import com.nph.nphtravel.db.handlers.UserDatabaseHandler;
+import com.nph.nphtravel.db.tableclasses.Category;
+import com.nph.nphtravel.db.tableclasses.Tour;
+import com.nph.nphtravel.db.tableclasses.User;
 
 import java.util.ArrayList;
 

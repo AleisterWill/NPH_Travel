@@ -1,4 +1,4 @@
-package com.nph.nphtravel;
+package com.nph.nphtravel.botnavfrags;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+
+import com.nph.nphtravel.R;
 
 public class BillFragment extends Fragment {
 

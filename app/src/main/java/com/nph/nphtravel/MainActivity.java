@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.nph.nphtravel.botnavfrags.AccountFragment;
+import com.nph.nphtravel.botnavfrags.BillFragment;
+import com.nph.nphtravel.botnavfrags.HomeFragment;
 import com.nph.nphtravel.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {

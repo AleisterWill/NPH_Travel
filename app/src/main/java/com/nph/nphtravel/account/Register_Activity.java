@@ -1,4 +1,4 @@
-package com.nph.nphtravel;
+package com.nph.nphtravel.account;
 
 
 import android.content.Intent;
@@ -14,6 +14,10 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.nph.nphtravel.R;
+import com.nph.nphtravel.db.handlers.UserDatabaseHandler;
+import com.nph.nphtravel.db.tableclasses.User;
 
 public class Register_Activity extends AppCompatActivity {
 

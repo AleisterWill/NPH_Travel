@@ -1,4 +1,4 @@
-package com.nph.nphtravel;
+package com.nph.nphtravel.account;
 
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,6 +10,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.nph.nphtravel.MainActivity;
+import com.nph.nphtravel.R;
+import com.nph.nphtravel.administration.Administrators;
+import com.nph.nphtravel.db.DBHelper;
+import com.nph.nphtravel.db.handlers.UserDatabaseHandler;
 
 public class Login_Activity extends AppCompatActivity {
 

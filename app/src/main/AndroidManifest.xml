@@ -28,13 +28,13 @@
         android:theme="@style/Theme.NPH＿Travel"
         tools:targetApi="31">
         <activity
-            android:name=".Administrators"
+            android:name=".administration.Administrators"
             android:exported="false" />
         <activity
-            android:name=".Register_Activity"
+            android:name=".account.Register_Activity"
             android:exported="false" />
         <activity
-            android:name=".Login_Activity"
+            android:name=".account.Login_Activity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
