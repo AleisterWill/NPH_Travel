@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
-
-    <!--    sử dụng build.gradle-->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!--    Thêm quyền truy cập bộ nhớ:-->
+    <!-- sử dụng build.gradle -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Thêm quyền truy cập bộ nhớ: -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
-
-    <!--    Thêm quyền truy cập tài nguyên đa phương tiện:-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Thêm quyền truy cập tài nguyên đa phương tiện: -->
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
-
 
     <application
         android:allowBackup="true"
@@ -27,6 +19,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NPH＿Travel"
         tools:targetApi="31">
+        <activity
+            android:name=".administration.AdminUser"
+            android:exported="false" />
+        <activity
+            android:name=".administration.AdminControlPanel"
+            android:exported="false" />
         <activity
             android:name=".administration.Administrators"
             android:exported="false" />

@@ -1,38 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="3">
+
     <ImageView
         android:id="@+id/avatarImageView"
-        android:layout_width="74dp"
-        android:gravity="center"
-        android:layout_height="40dp"
-        />
-    <TextView
-        android:id="@+id/idUser"
-        android:layout_width="74dp"
-        android:gravity="center"
-        android:layout_height="wrap_content"
-        android:hint="idUser"/>
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
 
-    <TextView
-        android:id="@+id/txtUserName"
-        android:layout_width="74dp"
-        android:gravity="center"
+    <LinearLayout
+        android:id="@+id/AdminUserInfo"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="username"/>
-    <TextView
-        android:id="@+id/txtPassWord"
-        android:layout_width="74dp"
-        android:gravity="center"
+        android:layout_weight="2"
+        android:weightSum="4">
 
-        android:layout_height="wrap_content"
-        android:hint="pass"/>
-    <TextView
-        android:gravity="center"
-        android:id="@+id/txtRole"
-        android:layout_width="74dp"
-        android:layout_height="wrap_content"
-        android:hint="role"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="UserID"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Username"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Password"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="UserRole"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/idUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="UserID"
+                />
+
+            <TextView
+                android:id="@+id/txtUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Username"
+                />
+
+            <TextView
+                android:id="@+id/txtPassWord"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Password"
+                />
+
+            <TextView
+                android:id="@+id/txtRole"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="UserRole"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 </LinearLayout>

@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.nph.nphtravel.MainActivity;
 import com.nph.nphtravel.R;
+import com.nph.nphtravel.administration.AdminControlPanel;
 import com.nph.nphtravel.administration.Administrators;
 import com.nph.nphtravel.db.DBHelper;
 import com.nph.nphtravel.db.handlers.UserDatabaseHandler;
@@ -69,10 +70,12 @@ public class Login_Activity extends AppCompatActivity {
                     Intent intent2 = new Intent(Login_Activity.this, MainActivity.class);
                     startActivity(intent2);
                 } else if (checkrole == 1) {
+
                     // Đăng nhập Admin
-                    Intent intent3 = new Intent(Login_Activity.this, Administrators.class);
-                    startActivity(intent3);
+                    Intent toAdminControlPanel = new Intent(Login_Activity.this, AdminControlPanel.class);
+                    startActivity(toAdminControlPanel);
                     Toast.makeText(Login_Activity.this, "Đăng nhập admin", Toast.LENGTH_SHORT).show();
+
                 }else {
                     // Đăng nhập thất bại, thông báo người dùng
                     Toast.makeText(Login_Activity.this, "Đăng nhập không thành công", Toast.LENGTH_SHORT).show();

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".administration.AdminControlPanel">
+
+
+    <LinearLayout
+        android:id="@+id/AdminUserAndCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnAdminUser"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawableTop="@drawable/baseline_supervisor_account_100"
+            android:layout_margin="10dp"
+            android:text="Quản lý người dùng"
+            android:textSize="20dp"
+            android:layout_weight="1"
+            app:cornerRadius="20dp"
+            android:backgroundTint="@color/primary"
+            />
+
+
+        <Button
+            android:id="@+id/btnAdminCategory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawableTop="@drawable/baseline_category_100"
+            android:layout_margin="10dp"
+            android:text="Quản lý Loại Tour"
+            android:textSize="20dp"
+            android:layout_weight="1"
+            app:cornerRadius="20dp"
+            android:backgroundTint="@color/danger"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@id/AdminUserAndCategory"
+        android:id="@+id/AdminTourAndBooking"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnAdminTour"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawableTop="@drawable/baseline_tour_100"
+            android:layout_margin="10dp"
+            android:text="Quản lý Tour"
+            android:textSize="20dp"
+            android:layout_weight="1"
+            app:cornerRadius="20dp"
+            android:backgroundTint="@color/warning"
+            />
+
+
+        <Button
+            android:id="@+id/btnAdminBooking"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:drawableTop="@drawable/baseline_receipt_long_100"
+            android:layout_margin="10dp"
+            android:text="Quản lý Booking"
+            android:textSize="20dp"
+            android:layout_weight="1"
+            app:cornerRadius="20dp"
+            android:backgroundTint="@color/success"
+            />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

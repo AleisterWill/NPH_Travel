@@ -105,6 +105,8 @@
         android:padding="16dp"
         android:text="Tour's Price"
         android:textSize="20sp"
+        android:backgroundTint="@color/info"
+        app:cornerRadius="10dp"
         />
 
 
