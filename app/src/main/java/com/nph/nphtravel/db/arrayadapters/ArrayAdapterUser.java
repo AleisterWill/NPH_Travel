@@ -1,4 +1,4 @@
-package com.nph.nphtravel.arrayadapters;
+package com.nph.nphtravel.db.arrayadapters;
 
 import android.app.Activity;
 import android.view.LayoutInflater;

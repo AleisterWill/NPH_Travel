@@ -1,5 +1,7 @@
 package com.nph.nphtravel.db.tableclasses;
 
+import java.util.Date;
+
 public class Tour {
     private String id;
     private String tour_name;

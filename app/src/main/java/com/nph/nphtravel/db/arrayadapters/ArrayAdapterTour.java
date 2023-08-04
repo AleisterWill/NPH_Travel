@@ -1,4 +1,4 @@
-package com.nph.nphtravel.arrayadapters;
+package com.nph.nphtravel.db.arrayadapters;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -33,8 +33,7 @@ public class ArrayAdapterTour extends ArrayAdapter {
     {
         LayoutInflater inflater = context.getLayoutInflater();
         convertView = inflater.inflate(layOutId, null);
-        if(myArrayTour.size() > 0 && pos >=0)
-        {
+        if(myArrayTour.size() > 0 && pos >=0) {
             ImageView img =(ImageView) convertView.findViewById(R.id.tourImageView);
             TextView tvTour = (TextView) convertView.findViewById(R.id.txtTourName);
             TextView tvPrice = (TextView) convertView.findViewById(R.id.txtPrice);

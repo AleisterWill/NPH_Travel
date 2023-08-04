@@ -11,18 +11,20 @@ import com.nph.nphtravel.botnavfrags.AccountFragment;
 import com.nph.nphtravel.botnavfrags.BillFragment;
 import com.nph.nphtravel.botnavfrags.HomeFragment;
 import com.nph.nphtravel.databinding.ActivityMainBinding;
+import com.nph.nphtravel.db.handlers.TourDatabaseHandler;
 
 public class MainActivity extends AppCompatActivity {
 
     //activity binder
     ActivityMainBinding binding;
 
+    TourDatabaseHandler tourDatabaseHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
 
         //menu bottom
         replaceFragment(new HomeFragment()); //set default fragment to home

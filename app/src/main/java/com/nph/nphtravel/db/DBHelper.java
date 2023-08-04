@@ -36,7 +36,7 @@ public class DBHelper extends SQLiteOpenHelper {
 //            + COT_ID + " integer primary key autoincrement,"
 //            + COT_NAME_CATEGORY + " text);";
     private static final String CREATE_TABLE_CATEGORY = String.format(
-            "CREATE TABLE %s(%s, %s, %s);",
+            "CREATE TABLE %s (%s, %s);",
         TEN_BANG_CATEGORY,
         COT_ID + " integer primary key autoincrement",
         COT_NAME_CATEGORY + "text"
@@ -56,18 +56,18 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     private static final String CREATE_TABLE_TOUR = String.format(
-            "CREATE TABLE %s(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", // 1 table name & 11 columns
+            "CREATE TABLE %s (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", // 1 table name & 11 columns
             TEN_BANG_TOUR,
             String.format("%s %s", COT_ID, "integer primary key autoincrement"),
             String.format("%s %s", COT_NAME_TOUR, "text"),
             String.format("%s %s", COT_PRICE_TOUR, "double default '0'"),
             String.format("%s %s", COT_DESCRIPTION_TOUR, "text"),
             String.format("%s %s", COT_LOCATION_TOUR, "text"),
-            String.format("%s %s", COT_START_DAY_TOUR, "date"),
-            String.format("%s %s", COT_END_DAY_TOUR, "date"),
+            String.format("%s %s", COT_START_DAY_TOUR, "text"),
+            String.format("%s %s", COT_END_DAY_TOUR, "text"),
             String.format("%s %s", COT_AVATAR, "text"),
             String.format("%s %s", COT_DISCOUNT_TOUR, "double default '0'"),
-            String.format("%s %s, FOREIGN KEY(%s) REFERENCES %s(%s)",
+            String.format("%s %s, FOREIGN KEY (%s) REFERENCES %s (%s)",
                     COT_TOUR_CATEGORY_ID, "integer", //col_name & data type
                     COT_TOUR_CATEGORY_ID, TEN_BANG_CATEGORY, COT_ID //col that is FK to tablename(col_name)
             )

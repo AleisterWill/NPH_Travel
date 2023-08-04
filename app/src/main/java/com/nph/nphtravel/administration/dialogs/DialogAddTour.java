@@ -150,12 +150,27 @@ public class DialogAddTour extends AppCompatDialogFragment {
                         // xử lý thêm
                         TourDatabaseHandler db = new TourDatabaseHandler(getContext());
                         String tourname = editTourName.getText().toString();
-                        String price = editPrice.getText().toString();
+
+                        Double price;
+                        try {
+                            price = Double.parseDouble(editPrice.getText().toString());
+                        } catch (NumberFormatException ex) {
+                            price = 0.0;
+                        }
                         String description = editDescription.getText().toString();
+
                         String location = editLocation.getText().toString();
+
                         String startday = editStartDay.getText().toString();
+
                         String endday = editEndDay.getText().toString();
-                        String discount = editDiscount.getText().toString();
+
+                        Double discount;
+                        try {
+                            discount = Double.parseDouble(editDiscount.getText().toString());
+                        } catch (NumberFormatException ex) {
+                            discount = 0.0;
+                        }
 
 
 
@@ -169,15 +184,15 @@ public class DialogAddTour extends AppCompatDialogFragment {
                         }
 
 
-                            Tour add_t = new Tour(tourname , Double.parseDouble(price), description, location,
-                                    startday,endday, Double.parseDouble(discount),imageUriString, idCategory);
+                            Tour add_t = new Tour(tourname , price, description, location,
+                                    startday,endday, discount, imageUriString, idCategory);
                             long newRowId = db.addTour(add_t);
 
 
 
                             //loadd
-                            Tour add_load = new Tour(String.valueOf(newRowId), tourname , Double.parseDouble(price), description, location,
-                                    startday,endday, Double.parseDouble(discount),imageUriString, idCategory);
+                            Tour add_load = new Tour(String.valueOf(newRowId), tourname , price, description, location,
+                                    startday,endday, discount, imageUriString, idCategory);
 
                             listener_t.onTourAdded(add_load);
 

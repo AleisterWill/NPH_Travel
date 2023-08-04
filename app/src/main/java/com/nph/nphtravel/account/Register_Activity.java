@@ -118,6 +118,7 @@ public class Register_Activity extends AppCompatActivity {
                 if(password.equals(comfirmPassword))
                 {
                     User u = new User(username , password, iUriString);
+                    u.setRole(1);
                     long newRowId = userDatabaseHandler.addUser(u);
 
                     editusername.setText("");

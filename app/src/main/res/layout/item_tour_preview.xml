@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/ivTourAvtPreview"
+        android:layout_width="400dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        tools:srcCompat="@drawable/avtar" />
+
+    <TextView
+        android:id="@+id/tvTourName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivTourAvtPreview"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="[HOT 2023] TEST1 COUNTRY - TEST2 COUNTRY 5N4D: City1 - City2 - City3"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        />
+
+    <ImageView
+        android:id="@+id/iconInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_info_details"
+        android:layout_below="@id/tvTourName"
+        android:layout_marginStart="16dp"
+        />
+
+    <TextView
+        android:id="@+id/tvTourDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/iconInfo"
+        android:layout_below="@id/tvTourName"
+        android:text="Tour Description. This wil be veeeeeeeeeeery veeeeeeeeeeery loooooooong"
+        android:textSize="20sp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        />
+
+    <ImageView
+        android:id="@+id/iconLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/baseline_location_on_24"
+        android:layout_below="@id/tvTourDesc"
+        android:layout_marginStart="16dp"
+
+        />
+
+    <TextView
+        android:id="@+id/tvTourRoute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Display Tour's route"
+        android:textSize="20sp"
+        android:layout_below="@id/tvTourDesc"
+        android:layout_toEndOf="@id/iconLocation"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        />
+
+    <ImageView
+        android:id="@+id/iconCalendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/baseline_calendar_today_24"
+        android:layout_marginStart="16dp"
+        android:layout_below="@+id/tvTourRoute"
+
+        />
+
+    <TextView
+        android:id="@+id/tvTourDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/iconCalendar"
+        android:layout_below="@id/tvTourRoute"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Display Tour's date"
+        android:textSize="20sp"
+        />
+
+    <Button
+
+        android:id="@+id/btnBooking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvTourDate"
+        android:layout_alignParentEnd="true"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        android:padding="16dp"
+        android:text="Tour's Price"
+        android:textSize="20sp"
+        />
+
+
+</RelativeLayout>
