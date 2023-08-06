@@ -17,6 +17,9 @@ import com.nph.nphtravel.administration.AdminControlPanel;
 import com.nph.nphtravel.administration.Administrators;
 import com.nph.nphtravel.db.DBHelper;
 import com.nph.nphtravel.db.handlers.UserDatabaseHandler;
+import com.nph.nphtravel.db.tableclasses.User;
+
+import java.io.Serializable;
 
 public class Login_Activity extends AppCompatActivity {
 
@@ -63,20 +66,27 @@ public class Login_Activity extends AppCompatActivity {
                 String pass = editPassword.getText().toString();
 
                 // Kiểm tra thông tin đăng nhập
-                int checkrole = databaseHandler.checkLogin(username, pass);
+                User user = databaseHandler.checkLogin(username, pass);
 
-                if (checkrole == 0) {
-                    // Đăng nhập user
-                    Intent intent2 = new Intent(Login_Activity.this, MainActivity.class);
-                    startActivity(intent2);
-                } else if (checkrole == 1) {
+                if (user != null) {
+                    //Logged in Successfully
+                    Intent toHomePage = new Intent(Login_Activity.this, MainActivity.class);
 
-                    // Đăng nhập Admin
-                    Intent toAdminControlPanel = new Intent(Login_Activity.this, AdminControlPanel.class);
-                    startActivity(toAdminControlPanel);
-                    Toast.makeText(Login_Activity.this, "Đăng nhập admin", Toast.LENGTH_SHORT).show();
+                    //currentUser bundle
+                    Bundle bundle = new Bundle();
+                    bundle.putString("id", user.getId());
+                    bundle.putString("username", user.getUsername());
+                    bundle.putString("avatar", user.getAvatar());
+                    bundle.putString("role", String.valueOf(user.getRole()));
 
-                }else {
+                    //put currentUser bunble into MainActivity's Extra
+                    toHomePage.putExtra("currentUser", bundle);
+
+                    //switch to MainActivity
+                    startActivity(toHomePage);
+
+
+                } else {
                     // Đăng nhập thất bại, thông báo người dùng
                     Toast.makeText(Login_Activity.this, "Đăng nhập không thành công", Toast.LENGTH_SHORT).show();
 

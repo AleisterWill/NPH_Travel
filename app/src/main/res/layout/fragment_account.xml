@@ -3,40 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".botnavfrags.AccountFragment"
-    android:orientation="vertical">
+    tools:context=".botnavfrags.AccountFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <ImageView
-        android:layout_width="133dp"
-        android:layout_height="114dp"
-        android:src="@drawable/avtar" />
 
-    <View
+    <TextView
+        android:id="@+id/id_DangNhap_DangKy"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/yellow"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
-        />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="58dp"
-            android:src="@drawable/baseline_account_circle_24" />
-        <TextView
-            android:id="@+id/id_DangNhap_DangKy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="Đăng nhập/Đăng ký"
-            android:layout_gravity="center"/>
-    </LinearLayout>
-
+        android:textSize="48sp"
+        android:text="Đăng Nhập"
+        android:textColor="@color/secondary"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:drawableTop="@drawable/baseline_supervised_user_circle_100"
+        android:backgroundTint="@color/light"
+        />
 
 </LinearLayout>

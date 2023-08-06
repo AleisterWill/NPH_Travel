@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".botnavfrags.ProfileFragment"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:id="@+id/layoutProfileInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp">
+
+        <ImageView
+            android:id="@+id/ivProfileAvatar"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/avt"
+            />
+
+        <TextView
+            android:id="@+id/tvProfileInfo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="UserID\nUsername\nUserRole"
+            android:textSize="24dp"
+            android:gravity="center"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutProfileInfo"
+        android:orientation="vertical"
+        >
+
+        <Button
+            android:id="@+id/btnAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/light"
+            android:drawableLeft="@drawable/baseline_admin_panel_settings_24"
+            android:text="Admin Control Panel"
+            android:textSize="24sp"
+            android:textColor="#000000"
+            android:textAlignment="textStart"
+            android:padding="10dp"
+            app:cornerRadius="10dp"
+
+            android:visibility="gone"
+            />
+
+        <Button
+            android:id="@+id/btnSignOut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/danger"
+            android:drawableLeft="@drawable/baseline_logout_24"
+            android:text="Đăng xuất"
+            android:textSize="24sp"
+            android:textAlignment="textStart"
+            android:padding="10dp"
+            app:cornerRadius="10dp"
+            />
+
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>

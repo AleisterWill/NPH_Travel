@@ -9,8 +9,11 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.nph.nphtravel.MainActivity;
 import com.nph.nphtravel.account.Login_Activity;
 import com.nph.nphtravel.R;
+
+import org.w3c.dom.Text;
 
 
 public class AccountFragment extends Fragment {
@@ -27,18 +30,16 @@ public class AccountFragment extends Fragment {
         //Anh xạ
         txtDangNhap_DangKy = rootVIew.findViewById(R.id.id_DangNhap_DangKy);
 
-
         // link tới Login_Activity
         txtDangNhap_DangKy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AccountFragment.this.getActivity(), Login_Activity.class);
+                Intent intent = new Intent(getActivity(), Login_Activity.class);
                 startActivity(intent);
             }
         });
 
-
-        return  rootVIew;
+        return rootVIew;
 
     }
 }

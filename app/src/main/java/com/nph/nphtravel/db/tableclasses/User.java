@@ -2,6 +2,8 @@ package com.nph.nphtravel.db.tableclasses;
 
 import androidx.annotation.NonNull;
 
+import java.io.Serializable;
+
 public class User {
     private String id;
     private String username;

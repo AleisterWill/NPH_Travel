@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.nph.nphtravel.botnavfrags.AccountFragment;
 import com.nph.nphtravel.botnavfrags.BillFragment;
 import com.nph.nphtravel.botnavfrags.HomeFragment;
+import com.nph.nphtravel.botnavfrags.ProfileFragment;
 import com.nph.nphtravel.databinding.ActivityMainBinding;
 import com.nph.nphtravel.db.handlers.TourDatabaseHandler;
 
@@ -35,17 +36,23 @@ public class MainActivity extends AppCompatActivity {
             } else if (item.getItemId() == R.id.action_shopping) {
                 replaceFragment(new BillFragment());
             } else if (item.getItemId() == R.id.action_profile) {
-                replaceFragment(new AccountFragment());
+                try {
+                    //throw NullPointerException if bundle doesn't exist
+                    Bundle currentUser = getIntent().getExtras().getBundle("currentUser");
+                    replaceFragment(new ProfileFragment());
+                } catch (NullPointerException ex) {
+                    replaceFragment(new AccountFragment());
+                }
             }
-
             return true;
         });
+
 
     }
 
 
     //replace fragment function
-    private void replaceFragment(Fragment fragment) {
+    public void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 

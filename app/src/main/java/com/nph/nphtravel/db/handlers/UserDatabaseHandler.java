@@ -2,6 +2,7 @@ package com.nph.nphtravel.db.handlers;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -16,12 +17,12 @@ public class UserDatabaseHandler {
     SQLiteDatabase database;
     DBHelper dbHelper;
 
-    public UserDatabaseHandler(Context context){
+    public UserDatabaseHandler(Context context) {
         dbHelper = new DBHelper(context);
         database = dbHelper.getWritableDatabase();
     }
 
-    public long addUser(User user){
+    public long addUser(User user) {
 
         database = dbHelper.getWritableDatabase();
 
@@ -42,19 +43,16 @@ public class UserDatabaseHandler {
     }
 
     // xử lý đăng nhập
-    public int checkLogin(String username, String password) {
+    public User checkLogin(String username, String password) {
+        User user = null;
+
         database = dbHelper.getReadableDatabase();
-
-        String[] projection = {
-                DBHelper.COT_USER_ROLE
-        };
-
         String selection = DBHelper.COT_USERNAME + " = ? AND " + DBHelper.COT_PASSWORD + " = ?";
         String[] selectionArgs = {username, password};
 
         Cursor cursor = database.query(
                 DBHelper.TEN_BANG_USER,
-                projection,
+                null,
                 selection,
                 selectionArgs,
                 null,
@@ -62,26 +60,29 @@ public class UserDatabaseHandler {
                 null
         );
 
-
-
-
-        int role = -1;
-
         if (cursor.moveToFirst()) {
+            try {
+                int idColumnIndex = cursor.getColumnIndex(DBHelper.COT_ID);
+                int usernameColumnIndex = cursor.getColumnIndex(DBHelper.COT_USERNAME);
+                int avatarColumnIndex = cursor.getColumnIndex(DBHelper.COT_AVATAR);
+                int roleColumnIndex = cursor.getColumnIndex(DBHelper.COT_USER_ROLE);
 
-            int roleColumnIndex = cursor.getColumnIndex("_user_role");
-            role = cursor.getInt(roleColumnIndex);
+                user = new User();
+                user.setId(cursor.getString(idColumnIndex));
+                user.setUsername(cursor.getString(usernameColumnIndex));
+                user.setAvatar(cursor.getString(avatarColumnIndex));
+                user.setRole(cursor.getInt(roleColumnIndex));
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
 
-
         cursor.close();
-
-        return role;
+        return user;
     }
 
     //Hiển thị dl
-    public ArrayList<User> getAllUser()
-    {
+    public ArrayList<User> getAllUser() {
         ArrayList<User> ls = new ArrayList<User>();
         Cursor c = database.query(DBHelper.TEN_BANG_USER, null, null, null,
                 null, null, null);
@@ -102,18 +103,16 @@ public class UserDatabaseHandler {
     }
 
     // phương thức xoá User sử dụng  username
-    public int deleteNameUser(String username)
-    {
-        String where="_username=?";
-        int numberOFEntriesDeleted= dbHelper.getWritableDatabase().delete(DBHelper.TEN_BANG_USER, where, new String[]{username}) ;
+    public int deleteNameUser(String username) {
+        String where = "_username=?";
+        int numberOFEntriesDeleted = dbHelper.getWritableDatabase().delete(DBHelper.TEN_BANG_USER, where, new String[]{username});
         return numberOFEntriesDeleted;
     }
 
     // phương thức xoá User sử dụng ID userName
-    public int deleteIDUser(String id)
-    {
-        String where="_id=?";
-        int numberOFEntriesDeleted= dbHelper.getWritableDatabase().delete(DBHelper.TEN_BANG_USER, where, new String[]{id}) ;
+    public int deleteIDUser(String id) {
+        String where = "_id=?";
+        int numberOFEntriesDeleted = dbHelper.getWritableDatabase().delete(DBHelper.TEN_BANG_USER, where, new String[]{id});
         return numberOFEntriesDeleted;
     }
 

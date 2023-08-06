@@ -32,20 +32,14 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
-    }
+        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        lvTour = (ListView) getView().findViewById(R.id.lvTour);
+        lvTour = (ListView) rootView.findViewById(R.id.lvTour);
         TourDatabaseHandler tourDatabaseHandler = new TourDatabaseHandler(getActivity());
         listTour = tourDatabaseHandler.getAllTour();
-        arrayAdapterTourPreview = new ArrayAdapterTourPreview(getActivity(), R.layout.item_tour_preview, listTour);
+        arrayAdapterTourPreview = new ArrayAdapterTourPreview(HomeFragment.this.getActivity(), R.layout.item_tour_preview, listTour);
         lvTour.setAdapter(arrayAdapterTourPreview);
 
-//        Tour tour = new Tour();
-//        tour.setTour_name("Test Tour");
-//        tour.setDescription("This is a test record");
-//        tourDatabaseHandler.addTour(tour);
+        return rootView;
     }
 }
