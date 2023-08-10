@@ -1,4 +1,4 @@
-package com.zlpdemo.merchantDemo.Helper.HMac;
+package com.nph.nphtravel.zalopay.Helper.HMac;
 
 import android.os.Build;
 

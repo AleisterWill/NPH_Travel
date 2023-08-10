@@ -18,6 +18,7 @@ public class TourDatabaseHandler {
     public TourDatabaseHandler(Context context) {
         dbHelper = new DBHelper(context);
         db = dbHelper.getWritableDatabase();
+//        dbHelper.onUpgrade(db, 1, 2);
     }
 
     public long addTour(Tour tour){

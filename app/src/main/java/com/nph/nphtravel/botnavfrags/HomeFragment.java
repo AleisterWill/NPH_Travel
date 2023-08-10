@@ -37,7 +37,7 @@ public class HomeFragment extends Fragment {
         lvTour = (ListView) rootView.findViewById(R.id.lvTour);
         TourDatabaseHandler tourDatabaseHandler = new TourDatabaseHandler(getActivity());
         listTour = tourDatabaseHandler.getAllTour();
-        arrayAdapterTourPreview = new ArrayAdapterTourPreview(HomeFragment.this.getActivity(), R.layout.item_tour_preview, listTour);
+        arrayAdapterTourPreview = new ArrayAdapterTourPreview(getActivity(), R.layout.item_tour_preview, listTour);
         lvTour.setAdapter(arrayAdapterTourPreview);
 
         return rootView;

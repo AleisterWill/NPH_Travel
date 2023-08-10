@@ -1,7 +1,7 @@
-package com.zlpdemo.merchantDemo.Api;
+package com.nph.nphtravel.zalopay.Api;
 
-import com.zlpdemo.merchantDemo.Constant.AppInfo;
-import com.zlpdemo.merchantDemo.Helper.Helpers;
+import com.nph.nphtravel.zalopay.Constant.AppInfo;
+import com.nph.nphtravel.zalopay.Helper.Helpers;
 
 import org.json.JSONObject;
 

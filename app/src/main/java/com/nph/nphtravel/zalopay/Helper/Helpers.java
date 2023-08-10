@@ -1,10 +1,11 @@
-package com.zlpdemo.merchantDemo.Helper;
+package com.nph.nphtravel.zalopay.Helper;
 
 import android.annotation.SuppressLint;
 
-import com.zlpdemo.merchantDemo.Helper.HMac.HMacUtil;
+import com.nph.nphtravel.zalopay.Helper.HMac.HMacUtil;
 
 import org.jetbrains.annotations.NotNull;
+
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;

@@ -44,6 +44,14 @@ public class AdminControlPanel extends AppCompatActivity {
             }
         });
 
+        btnAdminTour.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent toAdminTour = new Intent(AdminControlPanel.this, AdminTour.class);
+                startActivity(toAdminTour);
+            }
+        });
+
 
 
     }

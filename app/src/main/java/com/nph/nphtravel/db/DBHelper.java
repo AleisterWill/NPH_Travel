@@ -31,15 +31,15 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String TEN_BANG_CATEGORY = "Category";
     public static final String COT_NAME_CATEGORY = "_name_category";
 
-//    private static final String CREATE_TABLE_CATEGORY = ""
+    //    private static final String CREATE_TABLE_CATEGORY = ""
 //            + " create table " + TEN_BANG_CATEGORY + " ( "
 //            + COT_ID + " integer primary key autoincrement,"
 //            + COT_NAME_CATEGORY + " text);";
     private static final String CREATE_TABLE_CATEGORY = String.format(
             "CREATE TABLE %s (%s, %s);",
-        TEN_BANG_CATEGORY,
-        COT_ID + " integer primary key autoincrement",
-        COT_NAME_CATEGORY + "text"
+            TEN_BANG_CATEGORY,
+            COT_ID + " integer primary key autoincrement",
+            COT_NAME_CATEGORY + "text"
     );
 
 
@@ -74,51 +74,60 @@ public class DBHelper extends SQLiteOpenHelper {
     );
 
 
-
     public static final String TEN_BANG_BOOKING = "Booking";
     public static final String COT_DAY_BOOKING = "_day_booking";
     public static final String COT_STATUS_BOOKING = "_status_booking";
+    public static final String COT_SO_LUONG = "_quantity";
+    public static final String COT_TONG_TIEN = "_total";
     public static final String COT_BOOKING_USER_ID = "_user_id";
     public static final String COT_BOOKING_TOUR_ID = "_tour_id";
 
-    private static final String CREATE_TABLE_BOOKING = ""
-            + " create table " + TEN_BANG_BOOKING + " ( "
-            + COT_ID + " integer primary key autoincrement ,"
-            + COT_DAY_BOOKING + " text,"
-            + COT_STATUS_BOOKING + " text,"
-            + COT_BOOKING_USER_ID + " integer, "
-            + COT_BOOKING_TOUR_ID + " integer,"
-            + "FOREIGN KEY(" + COT_BOOKING_USER_ID + ") REFERENCES " + TEN_BANG_USER + "(" + COT_ID + "),"
-            + "FOREIGN KEY(" + COT_BOOKING_TOUR_ID + ") REFERENCES " + TEN_BANG_TOUR + "(" + COT_ID + ")"
-            + ")";
+
+    private static final String CREATE_TABLE_BOOKING = String.format(
+            "CREATE TABLE %s (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);",
+            TEN_BANG_BOOKING,
+            String.format("%s %s", COT_ID, "integer primary key autoincrement"),
+            String.format("%s %s", COT_DAY_BOOKING, "text"),
+            String.format("%s %s", COT_STATUS_BOOKING, "text"),
+            String.format("%s %s", COT_SO_LUONG, "integer"),
+            String.format("%s %s", COT_PRICE_TOUR, "double"),
+            String.format("%s %s", COT_TONG_TIEN, "double"),
+            String.format("%s %s", COT_BOOKING_TOUR_ID, "integer"),
+            String.format("%s %s", COT_BOOKING_USER_ID, "integer"),
+            String.format("FOREIGN KEY (%s) REFERENCES %s(%s)",
+                    COT_BOOKING_TOUR_ID, TEN_BANG_TOUR, COT_ID),
+            String.format("FOREIGN KEY (%s) REFERENCES %s(%s)",
+                    COT_BOOKING_USER_ID, TEN_BANG_USER, COT_ID)
+    );
 
 
-    public static final String TEN_BANG_TOUR_DETAIL = "Tour_detail";
-    public static final String COT_TOUR_DETAIL_HIGHLIGHT = "_highlight";
-    public static final String COT_TOUR_DETAIL_SERVICE_REGULATION = "_service_regulation";
-    public static final String COT_TOUR_DETAIL_TOUR_ID = "_tour_id";
-
-    private static final String CREATE_TABLE_TOUR_DETAIL = ""
-            + " create table " + TEN_BANG_TOUR_DETAIL + "("
-            + COT_ID + " integer primary key autoincrement ,"
-            + COT_TOUR_DETAIL_HIGHLIGHT + " text , "
-            + COT_TOUR_DETAIL_SERVICE_REGULATION + " text,"
-            + COT_TOUR_DETAIL_TOUR_ID + " integer,"
-            + "FOREIGN KEY(" + COT_TOUR_DETAIL_TOUR_ID + ") REFERENCES " + TEN_BANG_TOUR + "(" + COT_ID + ")"
-            + ")";
+    public static final String TEN_BANG_RECEIPT = "Receipt";
+    public static final String COT_FULLNAME = "_fullname";
+    public static final String COT_PHONENUMBER = "_phonenumber";
+    public static final String COT_ADDRESS = "_address";
+    public static final String COT_CREATED_DATE = "_created_date";
+    public static final String COT_PAY_METHOD = "_pay_method";
+    public static final String COT_TRANSACTION_TOKEN = "_trans_token";
+    public static final String COT_BOOKING_ID = "_booking_id";
 
 
-    public static final String TEN_BANG_SCHEDULE = "Schedule";
-    public static final String COT_SCHEDULE_CONTENT = "_content_schedule";
-    public static final String COT_SCHEDULE_TOUR_DETAIL_ID = "_tour_detail_id";
+    private static final String CREATE_TABLE_RECEIPT = String.format(
+            "CREATE TABLE %s (%s, %s, %s, %s, %s, %s, %s, %s, %s);",
+            TEN_BANG_RECEIPT,
+            String.format("%s %s", COT_ID, "integer primary key autoincrement"),
+            String.format("%s %s", COT_FULLNAME, "text"),
+            String.format("%s %s", COT_PHONENUMBER, "text"),
+            String.format("%s %s", COT_ADDRESS, "text"),
+            String.format("%s %s", COT_CREATED_DATE, "text"),
+            String.format("%s %s", COT_PAY_METHOD, "text"),
+            String.format("%s %s", COT_TRANSACTION_TOKEN, "text"),
+            String.format("%s %s", COT_BOOKING_ID, "integer"),
+            String.format("FOREIGN KEY (%s) REFERENCES %s (%s)",
+                    COT_BOOKING_ID, TEN_BANG_BOOKING, COT_ID)
+    );
 
-    private static final String CREATE_TABLE_SCHEDULE = ""
-            + " create table " + TEN_BANG_SCHEDULE + "("
-            + COT_ID + " integer primary key autoincrement ,"
-            + COT_SCHEDULE_CONTENT + " text , "
-            + COT_SCHEDULE_TOUR_DETAIL_ID + " integer,"
-            + "FOREIGN KEY(" + COT_SCHEDULE_TOUR_DETAIL_ID + ") REFERENCES " + TEN_BANG_TOUR_DETAIL + "(" + COT_ID + ")"
-            + ")";
+
+
 
     public static final String TEN_BANG_REVIEW = "Review";
     public static final String COT_REVIEW_RATING = "_rating_review";
@@ -133,10 +142,8 @@ public class DBHelper extends SQLiteOpenHelper {
             + COT_REVIEW_COMMENT + " text , "
             + COT_REVIEW_USER_ID + " integer,"
             + COT_REVIEW_TOUR_DETAIL_ID + " integer,"
-            + "FOREIGN KEY(" + COT_REVIEW_USER_ID + ") REFERENCES " + TEN_BANG_USER + "(" + COT_ID + "),"
-            + "FOREIGN KEY(" + COT_REVIEW_TOUR_DETAIL_ID + ") REFERENCES " + TEN_BANG_TOUR_DETAIL + "(" + COT_ID + ")"
+            + "FOREIGN KEY(" + COT_REVIEW_USER_ID + ") REFERENCES " + TEN_BANG_USER + "(" + COT_ID + ")"
             + ")";
-
 
 
     public DBHelper(@Nullable Context context) {
@@ -151,11 +158,8 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_TOUR);
         db.execSQL(CREATE_TABLE_CATEGORY);
         db.execSQL(CREATE_TABLE_BOOKING);
-        db.execSQL(CREATE_TABLE_TOUR_DETAIL);
-        db.execSQL(CREATE_TABLE_SCHEDULE);
-        db.execSQL(CREATE_TABLE_REVIEW);
-
-
+        db.execSQL(CREATE_TABLE_RECEIPT);
+//        db.execSQL(CREATE_TABLE_REVIEW);
     }
 
     @Override
@@ -165,8 +169,8 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TEN_BANG_TOUR);
         db.execSQL("DROP TABLE IF EXISTS " + TEN_BANG_CATEGORY);
         db.execSQL("DROP TABLE IF EXISTS " + TEN_BANG_BOOKING);
-        db.execSQL("DROP TABLE IF EXISTS " + TEN_BANG_TOUR_DETAIL);
-        db.execSQL("DROP TABLE IF EXISTS " + TEN_BANG_SCHEDULE);
+        db.execSQL("DROP TABLE IF EXISTS " + "Tour_detail");
+        db.execSQL("DROP TABLE IF EXISTS " + TEN_BANG_RECEIPT);
         db.execSQL("DROP TABLE IF EXISTS " + TEN_BANG_REVIEW);
 //        if (oldVersion < 1) {
 //            onCreate(db);

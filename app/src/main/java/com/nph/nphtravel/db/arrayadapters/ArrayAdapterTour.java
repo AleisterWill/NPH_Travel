@@ -38,6 +38,9 @@ public class ArrayAdapterTour extends ArrayAdapter {
             TextView tvTour = (TextView) convertView.findViewById(R.id.txtTourName);
             TextView tvPrice = (TextView) convertView.findViewById(R.id.txtPrice);
             TextView tvLocation = (TextView) convertView.findViewById(R.id.txtLocation);
+            TextView txtDate = convertView.findViewById(R.id.txtDate);
+            TextView txtDesc = convertView.findViewById(R.id.txtDesc);
+            TextView txtCateID = convertView.findViewById(R.id.txtCateID);
 
             //Thêm ID
             TextView tvID = (TextView)convertView.findViewById(R.id.idTour);
@@ -61,6 +64,9 @@ public class ArrayAdapterTour extends ArrayAdapter {
             tvTour.setText(emp.getTour_name());
             tvPrice.setText(String.valueOf(emp.getPrice()));
             tvLocation.setText(String.valueOf(emp.getLocation()));
+            txtDate.setText(emp.getStart_day());
+            txtDesc.setText(emp.getDescription());
+            txtCateID.setText(emp.getCategory_id());
 
             //Id tour
             tvID.setText(emp.getId());

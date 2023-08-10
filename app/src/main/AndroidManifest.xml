@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
 
     <application
+        tools:replace="android:theme"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -20,19 +21,31 @@
         android:theme="@style/Theme.NPH＿Travel"
         tools:targetApi="31">
         <activity
+            android:name=".PaymentActivity"
+            android:parentActivityName=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".administration.AdminTour"
+            android:parentActivityName=".administration.AdminControlPanel"
+            android:exported="false" />
+        <activity
             android:name=".administration.AdminUser"
+            android:parentActivityName=".administration.AdminControlPanel"
             android:exported="false" />
         <activity
             android:name=".administration.AdminControlPanel"
+            android:parentActivityName=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".administration.Administrators"
             android:exported="false" />
         <activity
             android:name=".account.Register_Activity"
+            android:parentActivityName=".account.Login_Activity"
             android:exported="false" />
         <activity
             android:name=".account.Login_Activity"
+            android:parentActivityName=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
