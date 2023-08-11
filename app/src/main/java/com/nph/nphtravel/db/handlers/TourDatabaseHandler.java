@@ -47,6 +47,38 @@ public class TourDatabaseHandler {
     }
 
 
+    public ArrayList<Tour> getPaginatedTours(int page, int max) {
+        ArrayList<Tour> listTour = new ArrayList<>();
+        Cursor c = db.query(DBHelper.TEN_BANG_TOUR, null, null, null,
+                null, null, null);
+
+        if (c.moveToPosition((page-1)*max)) {
+            for (int i = 0; i < max; i++) {
+                Tour t = new Tour();
+
+                t.setId(c.getString(0));
+                t.setTour_name(c.getString(1));
+                t.setPrice(Double.parseDouble(c.getString(2)));
+                t.setAvatar(c.getString(7));
+                t.setLocation(c.getString(4));
+
+                //them
+                t.setDescription(c.getString(3));
+                t.setStart_day(c.getString(5));
+                t.setEnd_day(c.getString(6));
+                t.setDiscount(Double.parseDouble(c.getString(8)));
+                t.setCategory_id(c.getString(9));
+
+                listTour.add(t);
+                if (!c.moveToNext())
+                    break;
+            }
+        }
+
+        return listTour;
+    }
+
+
     //Hiển thị dl
     public ArrayList<Tour> getAllTour()
     {

@@ -54,6 +54,20 @@
             />
 
         <Button
+            android:id="@+id/btnMyReceipt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/light"
+            android:drawableLeft="@drawable/baseline_receipt_24"
+            android:text="Hóa đơn của tôi"
+            android:textSize="24sp"
+            android:textColor="#000000"
+            android:textAlignment="textStart"
+            android:padding="10dp"
+            app:cornerRadius="10dp"
+            />
+
+        <Button
             android:id="@+id/btnSignOut"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

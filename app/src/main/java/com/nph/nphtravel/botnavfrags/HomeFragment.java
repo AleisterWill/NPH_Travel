@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.ScrollView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +28,7 @@ public class HomeFragment extends Fragment {
     ListView lvTour;
     ArrayList<Tour> listTour = new ArrayList<>();
     ArrayAdapterTourPreview arrayAdapterTourPreview;
+    int page = 1;
 
 
     @Override
@@ -36,10 +39,30 @@ public class HomeFragment extends Fragment {
 
         lvTour = (ListView) rootView.findViewById(R.id.lvTour);
         TourDatabaseHandler tourDatabaseHandler = new TourDatabaseHandler(getActivity());
-        listTour = tourDatabaseHandler.getAllTour();
+        listTour = tourDatabaseHandler.getPaginatedTours(page, 1);
         arrayAdapterTourPreview = new ArrayAdapterTourPreview(getActivity(), R.layout.item_tour_preview, listTour);
         lvTour.setAdapter(arrayAdapterTourPreview);
 
+        Button btnLoadMore = rootView.findViewById(R.id.btnLoadMore);
+        btnLoadMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                page++;
+                List<Tour> moreTours = tourDatabaseHandler.getPaginatedTours(page, 1);
+
+                if (!moreTours.isEmpty()) {
+                    listTour.addAll(moreTours);
+                    arrayAdapterTourPreview.notifyDataSetChanged();
+
+                } else {
+                    btnLoadMore.setVisibility(View.GONE);
+                }
+
+            }
+        });
+
+
         return rootView;
     }
+
 }

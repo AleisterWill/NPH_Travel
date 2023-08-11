@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,16 +19,18 @@ import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.nph.nphtravel.R;
+import com.nph.nphtravel.db.handlers.RatingDatabaseHandler;
 import com.nph.nphtravel.db.tableclasses.Tour;
 import com.nph.nphtravel.PaymentActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ArrayAdapterTourPreview extends ArrayAdapter {
 
     Activity context;
     int layoutId;
-    ArrayList<Tour> alTour;
+    public ArrayList<Tour> alTour;
 
     public ArrayAdapterTourPreview(@NonNull Activity context, int resource, @NonNull ArrayList<Tour> listTour) {
         super(context, resource, listTour);
@@ -45,14 +48,15 @@ public class ArrayAdapterTourPreview extends ArrayAdapter {
         if (alTour.size() > 0 && position >= 0) {
             ImageView img = convertView.findViewById(R.id.ivTourAvtPreview);
             TextView tvTour = convertView.findViewById(R.id.tvTourName);
-            TextView tvDesc = convertView.findViewById(R.id.tvTourDesc);
+            RatingBar rbTourScore = convertView.findViewById(R.id.rbTourScore);
             Button price = convertView.findViewById(R.id.btnBooking);
             TextView tvDate = convertView.findViewById(R.id.tvTourDate);
             TextView tvLocation = convertView.findViewById(R.id.tvTourRoute);
 
             Tour tour = alTour.get(position);
             tvTour.setText(tour.getTour_name());
-            tvDesc.setText(tour.getDescription());
+            RatingDatabaseHandler rdbh = new RatingDatabaseHandler(context);
+            rbTourScore.setRating((float) rdbh.getAvgScoreByTourId(Integer.parseInt(tour.getId().toString())));
             price.setText(String.valueOf(tour.getPrice()));
             tvLocation.setText(tour.getLocation());
             tvDate.setText(tour.getStart_day());
@@ -103,4 +107,5 @@ public class ArrayAdapterTourPreview extends ArrayAdapter {
         }
         return convertView;
     }
+
 }

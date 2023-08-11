@@ -38,6 +38,8 @@ public class PaymentActivity extends AppCompatActivity {
 
     Booking booking;
 
+    Bundle currentUser;
+
     EditText etFullName, etContact, etAddress, txtAmount;
     TextView tvOrdID, tvOrdName, tvOrdPrice, tvTotal;
     Button btnCreateOrder, btnPayMoMo;
@@ -71,6 +73,11 @@ public class PaymentActivity extends AppCompatActivity {
         tvOrdPrice.setText(orderInfo.getString("ordPrice"));
         tvTotal.setText(calTotal().toString());
 
+        //get currentUser
+        currentUser = getIntent().getExtras().getBundle("currentUser");
+
+
+        //handle editText quantity onChange
         txtAmount.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
@@ -79,28 +86,69 @@ public class PaymentActivity extends AppCompatActivity {
         });
 
 
-        //MOMO
         AppMoMoLib.getInstance().setEnvironment(AppMoMoLib.ENVIRONMENT.DEVELOPMENT);
         receiptDatabaseHandler = new ReceiptDatabaseHandler(this);
         bookingDatabaseHandler = new BookingDatabaseHandler(this);
+
+        //Prepare AlertDialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        btnCreateOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createOrder();
+                booking.setStatus("Chờ duyệt");
+                bookingDatabaseHandler.addBooking(booking);
+
+                builder.setTitle("Thông báo");
+                builder.setMessage("Book tour thành công. Chờ duyệt đơn và liên hệ!");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                });
+
+                builder.create().show();
+            }
+        });
+
         btnPayMoMo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle currentUser = getIntent().getExtras().getBundle("currentUser");
-
-                booking = new Booking(true);
-                //Tao don hang
+                createOrder();
                 booking.setStatus("Chờ thanh toán");
-                booking.setTourId(Integer.parseInt(tvOrdID.getText().toString()));
-                booking.setTourPrice(Double.parseDouble(tvOrdPrice.getText().toString()));
-                booking.setQuantity(Integer.parseInt(txtAmount.getText().toString()));
-                booking.setTotal(Double.parseDouble(tvTotal.getText().toString()));
-                booking.setUserId(Integer.parseInt(currentUser.getString("id")));
 
-                bookingDatabaseHandler.addBooking(booking);
-                requestPayment();
+                builder.setTitle("Thông báo");
+                builder.setMessage("Chuyển sang App MoMo để tiến hành thanh toán?");
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override public void onClick(DialogInterface dialogInterface, int i) {
+                        bookingDatabaseHandler.addBooking(booking);
+                        requestPayment();
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+
+                builder.create().show();
             }
         });
+
+    }
+
+
+    //DO NOT USE THIS BEFORE onCreate
+    private void createOrder() {
+        booking = new Booking(true);
+        //Tao don hang (không tạo status)
+        booking.setTourId(Integer.parseInt(tvOrdID.getText().toString()));
+        booking.setTourPrice(Double.parseDouble(tvOrdPrice.getText().toString()));
+        booking.setQuantity(Integer.parseInt(txtAmount.getText().toString()));
+        booking.setTotal(Double.parseDouble(tvTotal.getText().toString()));
+        booking.setUserId(Integer.parseInt(currentUser.getString("id")));
     }
 
 
@@ -123,7 +171,7 @@ public class PaymentActivity extends AppCompatActivity {
         eventValue.put("description", String.format("Thanh toán cho đơn hàng %s", booking.getId())); //mô tả đơn hàng - short description
 
         //client extra data
-        eventValue.put("requestId",  merchantCode+"merchant_billId_"+System.currentTimeMillis());
+        eventValue.put("requestId", merchantCode + "merchant_billId_" + System.currentTimeMillis());
         eventValue.put("partnerCode", merchantCode);
 
         AppMoMoLib.getInstance().requestMoMoCallBack(this, eventValue);
@@ -134,19 +182,19 @@ public class PaymentActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == AppMoMoLib.getInstance().REQUEST_CODE_MOMO && resultCode == -1) {
-            if(data != null) {
+        if (requestCode == AppMoMoLib.getInstance().REQUEST_CODE_MOMO && resultCode == -1) {
+            if (data != null) {
 
-                if(data.getIntExtra("status", -1) == 0) {
+                if (data.getIntExtra("status", -1) == 0) {
                     //TOKEN IS AVAILABLE
                     String token = data.getStringExtra("data"); //Token response
                     String phoneNumber = data.getStringExtra("phonenumber");
                     String env = data.getStringExtra("env");
-                    if(env == null){
+                    if (env == null) {
                         env = "app";
                     }
 
-                    if(token != null && !token.equals("")) {
+                    if (token != null && !token.equals("")) {
                         // TODO: send phoneNumber & token to your server side to process payment with MoMo server
                         // IF Momo topup success, continue to process your order
 

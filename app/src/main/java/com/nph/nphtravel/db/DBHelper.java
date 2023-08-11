@@ -127,8 +127,6 @@ public class DBHelper extends SQLiteOpenHelper {
     );
 
 
-
-
     public static final String TEN_BANG_REVIEW = "Review";
     public static final String COT_REVIEW_RATING = "_rating_review";
     public static final String COT_REVIEW_COMMENT = "_comment_review";
@@ -146,6 +144,29 @@ public class DBHelper extends SQLiteOpenHelper {
             + ")";
 
 
+    public static final String TEN_BANG_RATING = "Tour_Rating";
+    public static final String COT_SCORE = "_score";
+    public static final String COT_USER_ID = "_user_id";
+
+    public static final String COT_TOUR_ID = "_tour_id";
+    public static final String CREATE_TABLE_RATING = String.format(
+            "CREATE TABLE %s(%s, %s, %s, %s, %s, %s, %s);",
+            TEN_BANG_RATING,
+            String.format("%s %s", COT_ID, "integer primary key autoincrement"),
+            String.format("%s %s", COT_SCORE, "double"),
+            String.format("%s %s", COT_TOUR_ID, "integer"),
+            String.format("%s %s", COT_USER_ID, "integer"),
+            String.format("FOREIGN KEY (%s) REFERENCES %s (%s)",
+                    COT_TOUR_ID, TEN_BANG_TOUR, COT_ID),
+            String.format("FOREIGN KEY (%s) REFERENCES %s (%s)",
+                    COT_USER_ID, TEN_BANG_USER, COT_ID),
+            String.format("UNIQUE (%s, %s) ON CONFLICT REPLACE", COT_TOUR_ID, COT_USER_ID)
+    );
+
+
+
+
+
     public DBHelper(@Nullable Context context) {
         super(context, TEN_DATABASE, null, 3);
     }
@@ -159,6 +180,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_CATEGORY);
         db.execSQL(CREATE_TABLE_BOOKING);
         db.execSQL(CREATE_TABLE_RECEIPT);
+        db.execSQL(CREATE_TABLE_RATING);
 //        db.execSQL(CREATE_TABLE_REVIEW);
     }
 
@@ -171,6 +193,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TEN_BANG_BOOKING);
         db.execSQL("DROP TABLE IF EXISTS " + "Tour_detail");
         db.execSQL("DROP TABLE IF EXISTS " + TEN_BANG_RECEIPT);
+        db.execSQL("DROP TABLE IF EXISTS " + TEN_BANG_RATING);
         db.execSQL("DROP TABLE IF EXISTS " + TEN_BANG_REVIEW);
 //        if (oldVersion < 1) {
 //            onCreate(db);

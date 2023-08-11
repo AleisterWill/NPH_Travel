@@ -28,33 +28,21 @@
         android:textStyle="bold"
         />
 
-    <ImageView
-        android:id="@+id/iconInfo"
+    <RatingBar
+        android:id="@+id/rbTourScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_info_details"
         android:layout_below="@id/tvTourName"
-        android:layout_marginStart="16dp"
-        />
-
-    <TextView
-        android:id="@+id/tvTourDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/iconInfo"
-        android:layout_below="@id/tvTourName"
-        android:text="Tour Description. This wil be veeeeeeeeeeery veeeeeeeeeeery loooooooong"
-        android:textSize="20sp"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="16dp"
-        />
+        android:layout_marginLeft="16dp"
+        android:rating="5"
+        android:progressTint="@color/warning"/>
 
     <ImageView
         android:id="@+id/iconLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/baseline_location_on_24"
-        android:layout_below="@id/tvTourDesc"
+        android:layout_below="@+id/rbTourScore"
         android:layout_marginStart="16dp"
 
         />
@@ -65,7 +53,7 @@
         android:layout_height="wrap_content"
         android:text="Display Tour's route"
         android:textSize="20sp"
-        android:layout_below="@id/tvTourDesc"
+        android:layout_below="@+id/rbTourScore"
         android:layout_toEndOf="@id/iconLocation"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="16dp"
