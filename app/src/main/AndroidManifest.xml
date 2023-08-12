@@ -10,7 +10,6 @@
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
 
     <application
-        tools:replace="android:theme"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -19,34 +18,38 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NPH＿Travel"
+        tools:replace="android:theme"
         tools:targetApi="31">
         <activity
-            android:name=".PaymentActivity"
-            android:parentActivityName=".MainActivity"
+            android:name=".account.MyReceipts"
             android:exported="false" />
+        <activity
+            android:name=".PaymentActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".administration.AdminTour"
-            android:parentActivityName=".administration.AdminControlPanel"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".administration.AdminControlPanel" />
         <activity
             android:name=".administration.AdminUser"
-            android:parentActivityName=".administration.AdminControlPanel"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".administration.AdminControlPanel" />
         <activity
             android:name=".administration.AdminControlPanel"
-            android:parentActivityName=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".administration.Administrators"
             android:exported="false" />
         <activity
             android:name=".account.Register_Activity"
-            android:parentActivityName=".account.Login_Activity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".account.Login_Activity" />
         <activity
             android:name=".account.Login_Activity"
-            android:parentActivityName=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

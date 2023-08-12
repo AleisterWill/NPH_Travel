@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.nph.nphtravel.MainActivity;
 import com.nph.nphtravel.R;
+import com.nph.nphtravel.account.MyReceipts;
 import com.nph.nphtravel.administration.AdminControlPanel;
 
 public class ProfileFragment extends Fragment {
@@ -23,6 +24,8 @@ public class ProfileFragment extends Fragment {
     TextView tvProfileInfo;
     Button btnAdmin;
     Button btnSignOut;
+
+    Button btnMyReceipts;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,6 +38,7 @@ public class ProfileFragment extends Fragment {
         tvProfileInfo = rootView.findViewById(R.id.tvProfileInfo);
         btnAdmin = rootView.findViewById(R.id.btnAdmin);
         btnSignOut = rootView.findViewById(R.id.btnSignOut);
+        btnMyReceipts = rootView.findViewById(R.id.btnMyReceipt);
 
 
         // Get currentUser Bundle in Extras
@@ -62,6 +66,17 @@ public class ProfileFragment extends Fragment {
                 // Forward to AdminControlPanel
                 Intent toAdminControlPanel = new Intent(getActivity(), AdminControlPanel.class);
                 startActivity(toAdminControlPanel);
+            }
+        });
+
+        btnMyReceipts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Forward to MyReceipts with currentUser data
+                Intent toMyReceipts = new Intent(getActivity(), MyReceipts.class);
+                Bundle currentUser = getActivity().getIntent().getExtras().getBundle("currentUser");
+                toMyReceipts.putExtra("currentUser", currentUser);
+                startActivity(toMyReceipts);
             }
         });
 

@@ -43,8 +43,8 @@ public class BookingDatabaseHandler {
         Cursor c = db.query(
                 DBHelper.TEN_BANG_BOOKING,
                 null, // all cols
-                "WHERE id=?",
-                new String[]{"1"},
+                String.format("%s = %s", DBHelper.COT_ID, id),
+                null,
                 null,
                 null,
                 null
