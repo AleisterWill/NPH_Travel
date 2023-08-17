@@ -109,6 +109,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String COT_PAY_METHOD = "_pay_method";
     public static final String COT_TRANSACTION_TOKEN = "_trans_token";
     public static final String COT_BOOKING_ID = "_booking_id";
+    public static final String COT_RATED = "_rated";
 
 
     private static final String CREATE_TABLE_RECEIPT = String.format(
@@ -127,43 +128,45 @@ public class DBHelper extends SQLiteOpenHelper {
     );
 
 
-    public static final String TEN_BANG_REVIEW = "Review";
-    public static final String COT_REVIEW_RATING = "_rating_review";
-    public static final String COT_REVIEW_COMMENT = "_comment_review";
-    public static final String COT_REVIEW_USER_ID = "_user_id";
-    public static final String COT_REVIEW_TOUR_DETAIL_ID = "_tour_detail_id";
-
-    private static final String CREATE_TABLE_REVIEW = ""
-            + " create table " + TEN_BANG_REVIEW + "("
-            + COT_ID + " integer primary key autoincrement ,"
-            + COT_REVIEW_RATING + " integer , "
-            + COT_REVIEW_COMMENT + " text , "
-            + COT_REVIEW_USER_ID + " integer,"
-            + COT_REVIEW_TOUR_DETAIL_ID + " integer,"
-            + "FOREIGN KEY(" + COT_REVIEW_USER_ID + ") REFERENCES " + TEN_BANG_USER + "(" + COT_ID + ")"
-            + ")";
-
-
     public static final String TEN_BANG_RATING = "Tour_Rating";
     public static final String COT_SCORE = "_score";
+    public static final String COT_RECEIPT_ID = "_receipt_id";
     public static final String COT_USER_ID = "_user_id";
 
     public static final String COT_TOUR_ID = "_tour_id";
     public static final String CREATE_TABLE_RATING = String.format(
-            "CREATE TABLE %s(%s, %s, %s, %s, %s, %s, %s);",
+            "CREATE TABLE %s(%s, %s, %s, %s, %s, %s, %s, %s);",
             TEN_BANG_RATING,
             String.format("%s %s", COT_ID, "integer primary key autoincrement"),
             String.format("%s %s", COT_SCORE, "double"),
             String.format("%s %s", COT_TOUR_ID, "integer"),
             String.format("%s %s", COT_USER_ID, "integer"),
+            String.format("%s %S", COT_RECEIPT_ID, "integer"),
             String.format("FOREIGN KEY (%s) REFERENCES %s (%s)",
                     COT_TOUR_ID, TEN_BANG_TOUR, COT_ID),
             String.format("FOREIGN KEY (%s) REFERENCES %s (%s)",
                     COT_USER_ID, TEN_BANG_USER, COT_ID),
-            String.format("UNIQUE (%s, %s) ON CONFLICT REPLACE", COT_TOUR_ID, COT_USER_ID)
+            String.format("FOREIGN KEY (%s) REFERENCES %s (%s)",
+                    COT_RECEIPT_ID, TEN_BANG_RECEIPT, COT_ID)
     );
 
 
+    public static final String TEN_BANG_COMMENT = "Comment";
+    public static final String COT_COMMENT_CONTENT = "_content";
+
+    public static final String CREATE_TABLE_COMMENT = String.format(
+            "CREATE TABLE %s (%s, %s, %s, %s, %s, %s, %s);",
+            TEN_BANG_COMMENT,
+            String.format("%s %s", COT_ID, "integer primary key autoincrement"),
+            String.format("%s %s", COT_USER_ID, "integer"),
+            String.format("%s %s", COT_TOUR_ID, "integer"),
+            String.format("%s %s", COT_COMMENT_CONTENT, "text"),
+            String.format("%s %s", COT_CREATED_DATE, "text"),
+            String.format("FOREIGN KEY (%s) REFERENCES %s (%s)",
+                    COT_USER_ID, TEN_BANG_USER, COT_ID),
+            String.format("FOREIGN KEY (%s) REFERENCES %s (%s)",
+                    COT_TOUR_ID, TEN_BANG_TOUR, COT_ID)
+    );
 
 
 
@@ -181,7 +184,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_BOOKING);
         db.execSQL(CREATE_TABLE_RECEIPT);
         db.execSQL(CREATE_TABLE_RATING);
-//        db.execSQL(CREATE_TABLE_REVIEW);
+        db.execSQL(CREATE_TABLE_COMMENT);
     }
 
     @Override
@@ -194,7 +197,6 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + "Tour_detail");
         db.execSQL("DROP TABLE IF EXISTS " + TEN_BANG_RECEIPT);
         db.execSQL("DROP TABLE IF EXISTS " + TEN_BANG_RATING);
-        db.execSQL("DROP TABLE IF EXISTS " + TEN_BANG_REVIEW);
 //        if (oldVersion < 1) {
 //            onCreate(db);
 //        }

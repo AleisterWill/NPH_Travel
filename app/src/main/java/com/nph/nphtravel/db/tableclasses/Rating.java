@@ -4,7 +4,10 @@ public class Rating {
     private int id;
     private double score;
     private int userId;
-    private int bookingId;
+    private int tourId;
+
+    private int receiptId;
+
 
     public int getId() {
         return id;
@@ -30,11 +33,19 @@ public class Rating {
         this.userId = userId;
     }
 
-    public int getBookingId() {
-        return bookingId;
+    public int getTourId() {
+        return tourId;
     }
 
-    public void setBookingId(int bookingId) {
-        this.bookingId = bookingId;
+    public void setTourId(int tourId) {
+        this.tourId = tourId;
+    }
+
+    public int getReceiptId() {
+        return receiptId;
+    }
+
+    public void setReceiptId(int receiptId) {
+        this.receiptId = receiptId;
     }
 }

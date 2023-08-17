@@ -35,7 +35,8 @@
         android:layout_below="@id/tvTourName"
         android:layout_marginLeft="16dp"
         android:rating="5"
-        android:progressTint="@color/warning"/>
+        android:progressTint="@color/warning"
+        android:isIndicator="true"/>
 
     <ImageView
         android:id="@+id/iconLocation"

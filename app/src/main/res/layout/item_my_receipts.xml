@@ -79,13 +79,29 @@
         android:textColor="@color/success"
         android:layout_marginBottom="10dp"/>
 
-    <Button
-        android:id="@+id/btnRDetails"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Chi tiết đơn"
-        android:backgroundTint="@color/info"
-        android:layout_gravity="end"
-        app:cornerRadius="10dp"/>
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/btnRRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quýnh giá tour"
+            android:backgroundTint="@color/warning"
+            android:layout_gravity="end"
+            app:cornerRadius="10dp"/>
+
+        <Button
+            android:id="@+id/btnRDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Chi tiết đơn"
+            android:backgroundTint="@color/info"
+            android:layout_gravity="end"
+            app:cornerRadius="10dp"/>
+
+    </LinearLayout>
 
 </LinearLayout>

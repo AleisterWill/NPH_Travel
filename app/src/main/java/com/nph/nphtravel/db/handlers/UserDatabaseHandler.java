@@ -129,4 +129,34 @@ public class UserDatabaseHandler {
     }
 
 
+    public User getById(int id) {
+        Cursor c = database.query(
+                DBHelper.TEN_BANG_USER,
+                null,
+                DBHelper.COT_ID + "=" + id,
+                null,
+                null,
+                null,
+                null
+        );
+
+        if (c.moveToFirst()) {
+            int idColIdx = c.getColumnIndex(DBHelper.COT_ID);
+            int usernameColIdx = c.getColumnIndex(DBHelper.COT_USERNAME);
+            int avatarColIdx = c.getColumnIndex(DBHelper.COT_AVATAR);
+
+            User user = new User();
+            user.setId(c.getString(idColIdx));
+            user.setUsername(c.getString(usernameColIdx));
+            user.setAvatar(c.getString(avatarColIdx));
+
+            c.close();
+            return user;
+        }
+
+        c.close();
+        return null;
+    }
+
+
 }

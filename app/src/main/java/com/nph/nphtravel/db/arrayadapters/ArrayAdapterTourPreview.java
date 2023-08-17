@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.nph.nphtravel.R;
+import com.nph.nphtravel.TourDetailsActivity;
 import com.nph.nphtravel.db.handlers.RatingDatabaseHandler;
 import com.nph.nphtravel.db.tableclasses.Tour;
 import com.nph.nphtravel.PaymentActivity;
@@ -72,36 +73,18 @@ public class ArrayAdapterTourPreview extends ArrayAdapter {
             price.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Intent toDetails = new Intent(context, TourDetailsActivity.class);
+
                     try {
-                        // get currentUser
                         Bundle currentUser = context.getIntent().getExtras().getBundle("currentUser");
-
-                        Intent toPayment = new Intent(context, PaymentActivity.class);
-
-                        //put infos to bundle
-                        Bundle orderInfo = new Bundle();
-                        orderInfo.putString("ordId", tour.getId());
-                        orderInfo.putString("ordName", tour.getTour_name());
-                        orderInfo.putString("ordPrice", String.valueOf(tour.getPrice()));
-
-                        //put bundle to intent's extras
-                        toPayment.putExtra("orderInfo", orderInfo);
-                        toPayment.putExtra("currentUser", currentUser);
-
-                        context.startActivity(toPayment);
-
+                        toDetails.putExtra("currentUser", currentUser);
                     } catch (Exception ex) {
-                        AlertDialog builder = new AlertDialog.Builder(context)
-                                .setTitle("Thông báo")
-                                .setMessage("Bạn phải đăng nhập để thực hiện chức năng này")
-                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
 
-                                    }
-                                }).create();
-                        builder.show();
                     }
+
+                    toDetails.putExtra("detailsTourId", tour.getId());
+
+                    context.startActivity(toDetails);
                 }
             });
         }

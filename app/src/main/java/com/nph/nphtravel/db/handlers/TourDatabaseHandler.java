@@ -19,6 +19,8 @@ public class TourDatabaseHandler {
         dbHelper = new DBHelper(context);
         db = dbHelper.getWritableDatabase();
 //        dbHelper.onUpgrade(db, 1, 2);
+//        db.execSQL("DROP TABLE IF EXISTS " + DBHelper.TEN_BANG_COMMENT);
+//        db.execSQL(DBHelper.CREATE_TABLE_COMMENT);
     }
 
     public long addTour(Tour tour){
@@ -50,12 +52,11 @@ public class TourDatabaseHandler {
     public ArrayList<Tour> getPaginatedTours(int page, int max) {
         ArrayList<Tour> listTour = new ArrayList<>();
         Cursor c = db.query(DBHelper.TEN_BANG_TOUR, null, null, null,
-                null, null, null);
+                null, null, null, String.format("%s, %s", (page-1)*max, max));
 
-        if (c.moveToPosition((page-1)*max)) {
-            for (int i = 0; i < max; i++) {
+        if (c.moveToFirst()) {
+            do {
                 Tour t = new Tour();
-
                 t.setId(c.getString(0));
                 t.setTour_name(c.getString(1));
                 t.setPrice(Double.parseDouble(c.getString(2)));
@@ -70,9 +71,8 @@ public class TourDatabaseHandler {
                 t.setCategory_id(c.getString(9));
 
                 listTour.add(t);
-                if (!c.moveToNext())
-                    break;
-            }
+            } while (c.moveToNext());
+
         }
 
         return listTour;
@@ -133,6 +133,46 @@ public class TourDatabaseHandler {
         String where="_id=?";
         int numberOFEntriesDeleted= dbHelper.getWritableDatabase().delete(DBHelper.TEN_BANG_TOUR, where, new String[]{id}) ;
         return numberOFEntriesDeleted;
+    }
+
+    public Tour getById(String id) {
+        Cursor c = db.query(
+                DBHelper.TEN_BANG_TOUR,
+                null,
+                DBHelper.COT_ID + " = " + id,
+                null,
+                null,
+                null,
+                null
+        );
+
+        if (c.moveToFirst()) {
+            int idColIdx = c.getColumnIndex(DBHelper.COT_ID);
+            int nameColIdx = c.getColumnIndex(DBHelper.COT_NAME_TOUR);
+            int descColIdx = c.getColumnIndex(DBHelper.COT_DESCRIPTION_TOUR);
+            int routeColIdx = c.getColumnIndex(DBHelper.COT_LOCATION_TOUR);
+            int dateColIdx = c.getColumnIndex(DBHelper.COT_START_DAY_TOUR);
+            int priceColIdx = c.getColumnIndex(DBHelper.COT_PRICE_TOUR);
+            int imgColIdx = c.getColumnIndex(DBHelper.COT_AVATAR);
+            int cateColIdx = c.getColumnIndex(DBHelper.COT_TOUR_CATEGORY_ID);
+
+
+            Tour tour = new Tour();
+            tour.setId(c.getString(idColIdx));
+            tour.setTour_name(c.getString(nameColIdx));
+            tour.setDescription(c.getString(descColIdx));
+            tour.setLocation(c.getString(routeColIdx));
+            tour.setStart_day(c.getString(dateColIdx));
+            tour.setPrice(Double.parseDouble(c.getString(priceColIdx)));
+            tour.setAvatar(c.getString(imgColIdx));
+            tour.setCategory_id(c.getString(cateColIdx));
+
+            c.close();
+            return tour;
+        }
+
+        c.close();
+        return null;
     }
 
 }
