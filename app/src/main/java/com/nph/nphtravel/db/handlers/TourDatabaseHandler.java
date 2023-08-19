@@ -175,4 +175,64 @@ public class TourDatabaseHandler {
         return null;
     }
 
+    public ArrayList<Tour> filterByCateId(String kw, String date, String cateId) {
+        ArrayList<Tour> result = new ArrayList<>();
+
+        String projection = "";
+        if (!cateId.isEmpty())
+            projection += DBHelper.COT_TOUR_CATEGORY_ID + " = " + cateId;
+        projection += DBHelper.COT_TOUR_CATEGORY_ID + " is NULL";
+
+        if (!kw.isEmpty())
+            projection += " AND ("
+                    + String.format("%s LIKE '%%%s%%'", DBHelper.COT_NAME_TOUR, kw) + " OR "
+                    + String.format("%s LIKE '%%%s%%'", DBHelper.COT_LOCATION_TOUR, kw)
+                    + ")"
+            ;
+
+        if (!date.isEmpty())
+            projection += " AND "
+                    + DBHelper.COT_START_DAY_TOUR + ">=" + date
+            ;
+
+        Cursor c = db.query(
+                DBHelper.TEN_BANG_TOUR,
+                null,
+                projection,
+                null,
+                null,
+                null,
+                null
+        );
+
+        if (c.moveToFirst()) {
+            do {
+                int idColIdx = c.getColumnIndex(DBHelper.COT_ID);
+                int nameColIdx = c.getColumnIndex(DBHelper.COT_NAME_TOUR);
+                int descColIdx = c.getColumnIndex(DBHelper.COT_DESCRIPTION_TOUR);
+                int routeColIdx = c.getColumnIndex(DBHelper.COT_LOCATION_TOUR);
+                int dateColIdx = c.getColumnIndex(DBHelper.COT_START_DAY_TOUR);
+                int priceColIdx = c.getColumnIndex(DBHelper.COT_PRICE_TOUR);
+                int imgColIdx = c.getColumnIndex(DBHelper.COT_AVATAR);
+                int cateColIdx = c.getColumnIndex(DBHelper.COT_TOUR_CATEGORY_ID);
+
+
+                Tour tour = new Tour();
+                tour.setId(c.getString(idColIdx));
+                tour.setTour_name(c.getString(nameColIdx));
+                tour.setDescription(c.getString(descColIdx));
+                tour.setLocation(c.getString(routeColIdx));
+                tour.setStart_day(c.getString(dateColIdx));
+                tour.setPrice(Double.parseDouble(c.getString(priceColIdx)));
+                tour.setAvatar(c.getString(imgColIdx));
+                tour.setCategory_id(c.getString(cateColIdx));
+
+                result.add(tour);
+            } while(c.moveToNext());
+        }
+
+        c.close();
+        return result;
+    }
+
 }

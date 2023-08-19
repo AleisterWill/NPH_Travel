@@ -13,8 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.nph.nphtravel.MainActivity;
 import com.nph.nphtravel.R;
-import com.nph.nphtravel.administration.AdminControlPanel;
-import com.nph.nphtravel.administration.Administrators;
 import com.nph.nphtravel.db.DBHelper;
 import com.nph.nphtravel.db.handlers.UserDatabaseHandler;
 import com.nph.nphtravel.db.tableclasses.User;

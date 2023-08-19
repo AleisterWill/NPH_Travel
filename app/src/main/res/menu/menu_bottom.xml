@@ -6,8 +6,8 @@
         android:title="Trang chủ" />
     <item
         android:id="@+id/action_shopping"
-        android:icon="@drawable/baseline_shopping_bag_24"
-        android:title="Đơn đặt" />
+        android:icon="@drawable/baseline_format_list_bulleted_24"
+        android:title="Danh mục" />
     <item
         android:id="@+id/action_profile"
         android:icon="@drawable/baseline_account_circle_24"

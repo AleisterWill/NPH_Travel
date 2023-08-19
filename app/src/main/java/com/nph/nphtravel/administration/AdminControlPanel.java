@@ -39,7 +39,7 @@ public class AdminControlPanel extends AppCompatActivity {
         btnAdminCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent toAdminCategory = new Intent(AdminControlPanel.this, AdminUser.class);
+                Intent toAdminCategory = new Intent(AdminControlPanel.this, AdminCategory.class);
                 startActivity(toAdminCategory);
             }
         });
