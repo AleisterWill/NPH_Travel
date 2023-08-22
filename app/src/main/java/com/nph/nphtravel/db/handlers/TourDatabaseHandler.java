@@ -21,6 +21,8 @@ public class TourDatabaseHandler {
 //        dbHelper.onUpgrade(db, 1, 2);
 //        db.execSQL("DROP TABLE IF EXISTS " + DBHelper.TEN_BANG_COMMENT);
 //        db.execSQL(DBHelper.CREATE_TABLE_COMMENT);
+//        db.execSQL("DROP TABLE IF EXISTS " + DBHelper.TEN_BANG_CATEGORY);
+//        db.execSQL(DBHelper.CREATE_TABLE_CATEGORY);
     }
 
     public long addTour(Tour tour){
@@ -178,10 +180,7 @@ public class TourDatabaseHandler {
     public ArrayList<Tour> filterByCateId(String kw, String date, String cateId) {
         ArrayList<Tour> result = new ArrayList<>();
 
-        String projection = "";
-        if (!cateId.isEmpty())
-            projection += DBHelper.COT_TOUR_CATEGORY_ID + " = " + cateId;
-        projection += DBHelper.COT_TOUR_CATEGORY_ID + " is NULL";
+        String projection = DBHelper.COT_TOUR_CATEGORY_ID + " = " + cateId;
 
         if (!kw.isEmpty())
             projection += " AND ("

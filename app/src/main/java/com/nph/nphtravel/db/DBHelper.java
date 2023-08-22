@@ -35,11 +35,11 @@ public class DBHelper extends SQLiteOpenHelper {
 //            + " create table " + TEN_BANG_CATEGORY + " ( "
 //            + COT_ID + " integer primary key autoincrement,"
 //            + COT_NAME_CATEGORY + " text);";
-    private static final String CREATE_TABLE_CATEGORY = String.format(
+    public static final String CREATE_TABLE_CATEGORY = String.format(
             "CREATE TABLE %s (%s, %s);",
             TEN_BANG_CATEGORY,
             COT_ID + " integer primary key autoincrement",
-            COT_NAME_CATEGORY + "text"
+            COT_NAME_CATEGORY + " text"
     );
 
 

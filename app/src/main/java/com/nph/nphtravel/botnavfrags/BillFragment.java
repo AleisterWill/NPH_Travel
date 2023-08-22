@@ -32,7 +32,7 @@ public class BillFragment extends Fragment {
 
     //Prepare query data
     String kw = "", date = "";
-    String cateId = "";
+    String cateId = "0";
     ArrayList<Tour> listTours;
 
 
@@ -46,8 +46,8 @@ public class BillFragment extends Fragment {
 
 
         //Spinner Category
-        final CategoryDatabaseHandler[] cateDH = {new CategoryDatabaseHandler(this.getContext())};
-        ArrayList<Category> categories = cateDH[0].getAllCategory();
+        CategoryDatabaseHandler cateDH = new CategoryDatabaseHandler(this.getContext());
+        ArrayList<Category> categories = cateDH.getAllCategory();
         ArrayAdapter cateAAdapter = new ArrayAdapter<Category>(
                 this.getContext(), android.R.layout.simple_list_item_1, categories);
         spinnerCate.setAdapter(cateAAdapter);
